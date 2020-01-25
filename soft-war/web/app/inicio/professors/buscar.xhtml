@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jc="http://jc.faces/component">
+
+    <body>
+
+        <ui:composition template="./_template.xhtml">
+
+            <ui:define name="app.inicio.professors.content">
+
+                <h:outputText value="#{professorControl.recuperaCountTotalReg()}"/>
+
+                <p:panel header="Buscar Professor">
+
+                    <div align="center">
+                        <h:form>
+                            <br/><br/>
+                            <i style="color:gray">Name</i>
+                            <br/><br/>
+                            <p:inputText value="#{professorControl.valBusq}"/>
+                            <br/><br/>
+                            <p:commandButton value="Buscar" icon="fa fa-search" ajax="false"/>
+                            <br/><br/>
+                        </h:form>
+
+                    </div>
+
+                    <h:panelGroup rendered="#{professorControl.valBusq!=null}">
+                        <div align="center">
+
+                            <h:outputText value="#{professorControl.recuperaBuscarCount()}"/>
+
+                            Registros Encontrados (<b>#{professorControl.totalConsulta}</b>) - Criterio " <b>#{professorControl.valBusq}</b> "
+
+                            <jc:pagList
+                                id="0"
+                                count="#{professorControl.totalConsulta}"
+                                urlPageData="#{utilControl.protocolHostPortContext}/app/inicio/professors/buscarPag.xhtml?query_=#{professorControl.valBusq}"
+                                maxRegLista="#{professorControl.maxRegLista}"/>
+
+                        </div>
+                        <br/><br/>
+                    </h:panelGroup>
+                </p:panel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

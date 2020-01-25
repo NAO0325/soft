@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./_template.xhtml">
+
+            <ui:define name="app.inicio.students.content">
+
+                <p:panel header="Nuevo Student">
+                    <div align="center">
+                        <h:form>
+                            <p:panelGrid columns="2">
+
+                                <h:panelGroup>
+                                    <h:outputText value="Name" styleClass="label"/>
+                                    <h:outputText value="*" styleClass="oblig"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText value="#{studentControl.obj.name}" required="true" requiredMessage="Requerido!" id="attr_nombre"/>
+                                    <p:message for="attr_nombre"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Address" styleClass="label"/>
+                                    <h:outputText value="*" styleClass="oblig"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGroup>
+                                        <i style="color:gray;font-size: 11px">Street / City</i><br/>
+                                        <p:autoComplete value="#{studentControl.obj.idaddress}" id="atr_idaddress" 
+                                                        completeMethod="#{addressControl.autoCompleteWithMaxReg_NoLight}"  
+                                                        styleClass="autocomplete_" forceSelection="true" var="obj" 
+                                                        itemLabel="#{obj.street} #{obj.city}" 
+                                                        itemValue="#{obj}" 
+                                                        size="40" required="true" requiredMessage="Requerido !"/>  
+                                        <p:message for="atr_idaddress"/>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Email Address" styleClass="label"/>
+                                    <h:outputText value="*" styleClass="oblig"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText value="#{studentControl.obj.emailAddress}" required="true" requiredMessage="Requerido!" id="attr_email_address"/>
+                                    <p:message for="attr_email_address"/>
+                                </h:panelGroup>
+                                
+                                <h:panelGroup>
+                                    <h:outputText value="Number" styleClass="label"/>
+                                    <h:outputText value="*" styleClass="oblig"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText value="#{studentControl.obj.studentNumber}" required="true" requiredMessage="Requerido!" id="attr_student_number"/>
+                                    <p:message for="attr_student_number"/>
+                                </h:panelGroup>
+
+                                <h:panelGroup>
+                                    <h:outputText value="Phone Number" styleClass="label"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText value="#{studentControl.obj.phoneNumber}" required="false" id="attr_phone_number"/>
+                                    <p:message for="attr_phone_number"/>
+                                </h:panelGroup>
+                                
+                                <h:panelGroup>
+                                    <h:outputText value="Average Mark" styleClass="label"/>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <p:inputText value="#{studentControl.obj.averageMark}" required="false" id="attr_average_mark"/>
+                                    <p:message for="attr_average_mark"/>
+                                </h:panelGroup>
+
+
+                            </p:panelGrid>
+                            <br/><br/>
+                            <p:commandButton value="Guardar" action="#{studentControl.nuevo()}" icon="fa fa-save" ajax="false"/>
+                            <br/><br/>
+                        </h:form>
+
+                        <h:panelGroup rendered="#{studentControl.successful}">
+                            <script type="text/javascript">
+                                document.location.href = '#{utilControl.protocolHostPortContext}/app/inicio/students/detalle/detalle.xhtml?idperson_=#{studentControl.obj.idperson}';
+                            </script>
+                        </h:panelGroup>
+
+                    </div>
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

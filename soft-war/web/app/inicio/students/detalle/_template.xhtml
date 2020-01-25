@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../_template.xhtml">
+
+            <ui:define name="app.inicio.students.content">
+
+                <h:outputText value="#{studentControl.recuperaById()}"/>
+
+                <p:panel header="Detalles de Student">
+                    <h:outputText value="#{studentControl.obj.name}" style="font-size: 20px;"/>
+                    <p:separator/>
+                    <p:menubar>
+                        <p:menuitem value="Detalle" url="#{utilControl.protocolHostPortContext}/app/inicio/students/detalle/detalle.xhtml?idperson_=#{param.idperson_}" icon="fa fa-hand-o-right" />
+                        <p:menuitem value="Editar" url="#{utilControl.protocolHostPortContext}/app/inicio/students/detalle/editar.xhtml?idperson_=#{param.idperson_}" icon="fa fa-pencil-square-o" />
+                        <p:menuitem value="Eliminar" url="#{utilControl.protocolHostPortContext}/app/inicio/students/detalle/eliminar.xhtml?idperson_=#{param.idperson_}" icon="fa fa-close" />
+                    </p:menubar>
+                    <br/>
+                    <ui:insert name="app.inicio.students.detalle.content"></ui:insert>
+                </p:panel>
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

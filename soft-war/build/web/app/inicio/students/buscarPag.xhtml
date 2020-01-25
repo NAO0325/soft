@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../_templateEmbed.xhtml">
+
+            <ui:define name="content.embed">
+
+                <h:outputText value="#{studentControl.setValBusq(param.query_)}"/>
+                <h:outputText value="#{studentControl.buscarNoLigth()}"/>
+
+                <br/>
+                <div>
+                    <ui:repeat var="lst" value="#{studentControl.lst}" >
+                        <p:panel>
+                            <div align="left">
+                                <a href="#{utilControl.protocolHostPortContext}/app/inicio/students/detalle/detalle.xhtml?idperson_=#{lst.idperson}">
+                                    <h:outputText value="#{lst.name}" class="busqBlue"/>
+                                </a>
+                                <p:separator/>
+                                <div>
+                                    Number: <h:outputText value="#{lst.studentNumber}"/>
+                                </div>
+                                <div class="busqGreen">
+                                    <h:outputText value="#{lst.emailAddress}"/>
+                                </div>
+
+                            </div>
+                        </p:panel>    
+                        <br/>
+                    </ui:repeat>
+
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

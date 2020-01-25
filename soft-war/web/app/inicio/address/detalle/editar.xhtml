@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./_template.xhtml">
+
+            <ui:define name="app.inicio.address.detalle.content">
+
+                <div align="center">
+                    <h:form id="ff_">
+                        <p:panelGrid columns="2">
+
+                            <h:panelGroup>
+                                <h:outputText value="Street" styleClass="label"/>
+                                <h:outputText value="*" styleClass="oblig"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:inputText value="#{addressControl.obj.street}" required="true" requiredMessage="Requerido!" id="attr_street"/>
+                                <p:message for="attr_street"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+                                <h:outputText value="City" styleClass="label"/>
+                                <h:outputText value="*" styleClass="oblig"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:inputText value="#{addressControl.obj.city}" required="true" requiredMessage="Requerido!" id="attr_city"/>
+                                <p:message for="attr_city"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+                                <h:outputText value="Country" styleClass="label"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:inputText value="#{addressControl.obj.country}" required="false" id="attr_country"/>
+                                <p:message for="attr_country"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+                                <h:outputText value="Postal Code" styleClass="label"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:inputText value="#{addressControl.obj.postalCode}" required="false" id="attr_postal_code"/>
+                                <p:message for="attr_postal_code"/>
+                            </h:panelGroup>
+
+                        </p:panelGrid>
+                        <br/><br/>
+
+                        <h:inputHidden value="#{addressControl.obj.idaddress}"/>
+
+                        <p:commandButton value="Guardar Cambios" action="#{addressControl.editar()}" icon="fa fa-save" ajax="false">
+                            <f:param name="idaddress_" value="#{param.idaddress_}"/>
+                        </p:commandButton>
+                        <br/><br/>
+                        <p:message for="ff_"/>
+                    </h:form>
+
+                    <h:panelGroup rendered="#{addressControl.successful}">
+                        <script type="text/javascript">
+                            document.location.href = '#{utilControl.protocolHostPortContext}/app/inicio/address/detalle/detalle.xhtml?idaddress_=#{addressControl.obj.idaddress}';
+                        </script>
+                    </h:panelGroup>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
